@@ -1,13 +1,16 @@
 const { ethers, upgrades } = require("hardhat");
 const hre = require("hardhat");
 
-const data = require('../../geni_data/index');
+const data = require('geni_data');
 
 async function main() {
+    const [deployer] = await ethers.getSigners();
+    const initialOwner = deployer.address;
+    const recipient = deployer.address;
     const GeniToken = await ethers.getContractFactory("GeniToken");
     const token = await upgrades.deployProxy(
         GeniToken,
-        [],
+        [recipient, initialOwner],
         { initializer: "initialize", kind: "uups" }
     );
     await token.waitForDeployment();
