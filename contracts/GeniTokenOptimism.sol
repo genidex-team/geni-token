@@ -62,14 +62,19 @@ contract GeniTokenOptimism is
         _;
     }
 
+    /// @custom:oz-upgrades-unsafe-allow constructor
+    constructor() {
+        _disableInitializers();
+    }
+
     /// @notice Initializes the token with name, symbol, remoteToken, bridge, and sets the owner.
     /// @param remoteTokenAddress_ Address of the L1 GeniToken on Ethereum Mainnet.
     /// @param bridgeAddress_ Address of the L2 Standard Bridge on Optimism (0x4200000000000000000000000000000000000010).
     /// @param initialOwner Address to set as owner and admin for upgrade.
     function initialize(
+        address initialOwner,
         address remoteTokenAddress_,
-        address bridgeAddress_,
-        address initialOwner
+        address bridgeAddress_
     ) public initializer {
         __ERC20_init("Geni Token", "GENI");
         __ERC20Permit_init("Geni Token");

@@ -29,7 +29,7 @@ async function main() {
   // Deploy upgradeable proxy
   const token = await upgrades.deployProxy(
     GeniToken,
-    [remoteTokenAddress, bridgeAddress, initialOwner],
+    [initialOwner, remoteTokenAddress, bridgeAddress],
     { initializer: "initialize", kind: "uups" }
   );
 //   await token.deployed();

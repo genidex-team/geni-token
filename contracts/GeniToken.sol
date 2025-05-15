@@ -39,4 +39,19 @@ contract GeniToken is Base, ArbitrumBridge {
             interfaceId == type(IGeniToken).interfaceId ||
             super.supportsInterface(interfaceId);
     }
+
+    function transferFrom(
+        address sender,
+        address recipient,
+        uint256 amount
+    ) public override(ICustomToken, ERC20Upgradeable) returns (bool) {
+        return super.transferFrom(sender, recipient, amount);
+    }
+
+    function balanceOf(address account) public view override(
+        ICustomToken,
+        ERC20Upgradeable
+    ) returns (uint256) {
+        return super.balanceOf(account);
+    }
 }

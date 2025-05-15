@@ -21,9 +21,7 @@ abstract contract Base is
     UUPSUpgradeable,
     ERC165 {
 
-    address public arbCustomGateway;
-    address public arbGatewayRouter;
-    bool internal arbShouldRegisterGateway;
+    
 
     // The following functions are overrides required by Solidity.
 
