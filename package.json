@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@arbitrum/sdk": "^4.0.4",
+    "@genidex/logger": "^1.0.2",
     "@openzeppelin/contracts-upgradeable": "^5.3.0",
     "@openzeppelin/hardhat-upgrades": "^3.9.0",
     "geni_data": "file:../geni_data"

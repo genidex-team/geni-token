@@ -14,6 +14,7 @@ async function main() {
     console.log("Upgrading GeniToken at:", proxyAddress);
 
     const GeniToken = await ethers.getContractFactory("GeniToken");
+    // await upgrades.forceImport(proxyAddress, GeniToken, { kind: 'uups' });
     const upgraded = await upgrades.upgradeProxy(proxyAddress, GeniToken, {
         kind: "uups",
     });
