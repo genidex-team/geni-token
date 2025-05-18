@@ -12,20 +12,20 @@ contract GeniToken is Base, ArbitrumBridge {
     }
 
     function initialize(
-        address recipient,
+        // address recipient,
         address initialOwner,
         address _arbCustomGateway,
         address _arbGatewayRouter
     ) public initializer {
-        __ERC20_init("Geni Token", "GENI");
+        __ERC20_init("GeniDex", "GENI");
         __ERC20Burnable_init();
-        __ERC20Permit_init("Geni Token");
+        __ERC20Permit_init("GeniDex");
         __ERC20Votes_init();
         __Ownable_init(initialOwner);
         __UUPSUpgradeable_init();
         __ArbitrumBridgeInit(_arbCustomGateway, _arbGatewayRouter);
 
-        _mint(recipient, 10_000_000_000 * 10 ** decimals());
+        _mint(initialOwner, 10_000_000_000 * 10 ** decimals());
     }
 
     function _authorizeUpgrade(

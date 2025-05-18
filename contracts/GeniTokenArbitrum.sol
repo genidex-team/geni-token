@@ -43,8 +43,8 @@ contract GeniTokenArbitrum is
         address _l1TokenAddress,
         address _l2Gateway
     ) public initializer {
-        __ERC20_init("Geni Token", "GENI");
-        __ERC20Permit_init("Geni Token");
+        __ERC20_init("GeniDex", "GENI");
+        __ERC20Permit_init("GeniDex");
         __ERC20Votes_init();
         __Ownable_init(initialOwner);
         __UUPSUpgradeable_init();
