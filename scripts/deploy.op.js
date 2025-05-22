@@ -2,7 +2,7 @@
 
 const { ethers, network } = require("hardhat");
 const data = require('geni_data');
-const helper = require('../helpers/helper');
+const {factory} = require('geni_helper');
 
 const l1NetworkName = data.getL1NetworkName(network.name);
 const l1TokenAddress = data.getGeniTokenAddress(l1NetworkName);
@@ -20,7 +20,7 @@ async function main() {
 
     //Deploy on Optimism
     let initArgs = [initialOwner, l1TokenAddress, bridgeAddress];
-    await helper.deploy('GeniTokenOptimism', proxySalt, initArgs, 'uups');
+    await factory.deploy('GeniTokenOptimism', proxySalt, initArgs, 'uups');
 
 
 }

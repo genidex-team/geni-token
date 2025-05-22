@@ -1,11 +1,11 @@
 
-const helper = require('../helpers/helper');
+const {factory} = require('geni_helper');
 const data = require('geni_data');
 
 async function main() {
-    const proxyInitCodeHash = await helper.getProxyInitCodeHash();
-    const factory = data.getFactoryAddress(network.name);
-    console.log({proxyInitCodeHash, factory});
+    const proxyInitCodeHash = await factory.getProxyInitCodeHash();
+    const factoryAddress = data.getFactoryAddress(network.name);
+    console.log({proxyInitCodeHash, factoryAddress});
 }
 
 main()

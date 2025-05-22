@@ -21,7 +21,6 @@
     "@genidex/logger": "^1.0.2",
     "@openzeppelin/contracts-upgradeable": "^5.3.0",
     "geni_data": "file:../geni_data",
-    "geni_helper": "file:../geni_helper",
-    "geni_helper_mjs": "file:../geni_helper_mjs"
+    "geni_helper": "file:../geni_helper"
   }
 }

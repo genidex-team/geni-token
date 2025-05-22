@@ -2,8 +2,7 @@
 
 const { ethers, network } = require("hardhat");
 const data = require('geni_data');
-
-const helper = require('../helpers/helper');
+const {factory} = require('geni_helper');
 
 
 async function main() {
@@ -15,7 +14,7 @@ async function main() {
     // IMPLEMENTATION
     const Token = await ethers.getContractFactory("PlaceholderUUPS");
     let implSalt = ethers.keccak256(ethers.toUtf8Bytes("Placeholder.UUPS"));
-    const implPredicted = await helper.deployFromFactory(Token.bytecode, implSalt);
+    const implPredicted = await factory.deployFromFactory(Token.bytecode, implSalt);
     data.setPlaceholderUUPS(network.name, implPredicted);
 }
 

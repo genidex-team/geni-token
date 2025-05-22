@@ -3,14 +3,31 @@
 const { ethers, network } = require("hardhat");
 const { getArbitrumNetwork } = require('@arbitrum/sdk');
 const data = require('geni_data');
-const helper = require('../helpers/helper');
+const {factory} = require('geni_helper');
 
 const l1NetworkName = data.getL1NetworkName(network.name);
 const l1TokenAddress = data.getGeniTokenAddress(l1NetworkName);
 
-const l2Network = getArbitrumNetwork(421614);
-const l2CustomGatewayAddress = l2Network.tokenBridge.childCustomGateway;
-const proxySalt = data.getTokenSalt();
+// const l2Network = getArbitrumNetwork(421614);
+// const l2CustomGatewayAddress = l2Network.tokenBridge.childCustomGateway;
+// const proxySalt = data.getTokenSalt();
+
+let proxySalt, arbitrumChainId, l2Network, l2CustomGatewayAddress;
+if(data.isTestnet(network.name)){
+    arbitrumChainId = data.getChainId('arb_sepolia');
+}else if(data.isMainnet(network.name)){
+    arbitrumChainId = data.getChainId('arbitrum')
+}
+if(data.isDevnet(network.name)){
+    // proxySalt = data.getTokenSalt();
+    proxySalt = data.randomBytes32();
+    l2CustomGatewayAddress = ethers.ZeroAddress;
+}else{
+    proxySalt = data.getTokenSalt();
+    l2Network = getArbitrumNetwork(arbitrumChainId);
+    l2CustomGatewayAddress = l2Network.tokenBridge.childCustomGateway;
+}
+
 
 console.log({
     l1NetworkName,
@@ -35,7 +52,7 @@ async function main() {
 
     // Deploy on Arbitrum
     let initArgs = [initialOwner, l1TokenAddress, l2CustomGatewayAddress];
-    await helper.deploy('GeniTokenArbitrum', proxySalt, initArgs, 'uups');
+    await factory.deploy('GeniTokenArbitrum', proxySalt, initArgs, 'uups');
 
 }
 
