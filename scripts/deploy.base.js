@@ -21,7 +21,8 @@ async function main() {
 
     //Deploy on Optimism
     let initArgs = [initialOwner, l1TokenAddress, bridgeAddress];
-    await factory.deploy('GeniTokenBase', proxySalt, initArgs, 'uups');
+    const proxyAddress = await factory.deploy('GeniTokenBase', proxySalt, initArgs, 'uups');
+    data.setGeniTokenAddress(network.name, proxyAddress)
 
 
 }

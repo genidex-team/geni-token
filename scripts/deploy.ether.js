@@ -35,7 +35,8 @@ async function main() {
     console.log(`Deployer: ${deployer.address}`);
     console.log({initialOwner, l1CustomGateway, l1GatewayRouter})
     let initArgs = [initialOwner, l1CustomGateway, l1GatewayRouter];
-    await factory.deploy('GeniToken', proxySalt, initArgs, 'uups');
+    const proxyAddress = await factory.deploy('GeniToken', proxySalt, initArgs, 'uups');
+    data.setGeniTokenAddress(network.name, proxyAddress)
 
 }
 

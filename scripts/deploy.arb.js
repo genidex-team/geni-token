@@ -52,7 +52,8 @@ async function main() {
 
     // Deploy on Arbitrum
     let initArgs = [initialOwner, l1TokenAddress, l2CustomGatewayAddress];
-    await factory.deploy('GeniTokenArbitrum', proxySalt, initArgs, 'uups');
+    const proxyAddress = await factory.deploy('GeniTokenArbitrum', proxySalt, initArgs, 'uups');
+    data.setGeniTokenAddress(network.name, proxyAddress)
 
 }
 

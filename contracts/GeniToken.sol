@@ -12,7 +12,6 @@ contract GeniToken is Base, ArbitrumBridge {
     }
 
     function initialize(
-        // address recipient,
         address initialOwner,
         address _arbCustomGateway,
         address _arbGatewayRouter
